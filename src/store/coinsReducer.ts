@@ -1,5 +1,6 @@
 import {AnyAction, Dispatch} from "redux";
 import {coinGheckoApi} from "../api/coinGheckoApi";
+import {allActionType} from "./store";
 
 export type initState = {
         id: string,
@@ -42,7 +43,6 @@ export type getCoinsACType = ReturnType<typeof getCoinsAC>
 export type getAllCoinsACType = ReturnType<typeof getAllCoinsAC>
 
 
-export type allActionType = getAllCoinsACType | getCoinsACType
 
 export const fetchCoinsTC = () => (dispatch:Dispatch) => {
     coinGheckoApi.getCoins().then((res) => {

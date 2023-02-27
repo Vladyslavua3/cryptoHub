@@ -5,6 +5,8 @@ import {CryptoRank} from "./components/CryptoRank/CryptoRank";
 import {News} from "./components/News/News";
 import {Portfolio} from "./components/Portfolio/Portfolio";
 import {Route, Routes} from "react-router-dom";
+import {Trending} from "./components/Trending/Trending";
+import {Holders} from "./components/Holders/Holders";
 
 export function App() {
 
@@ -17,6 +19,8 @@ export function App() {
             <Routes>
                 <Route path={"/"} element={<Main/>}/>
                 <Route path={"/allCrypto"} element={<CryptoRank/>}/>
+                <Route path={"/trending"} element={<Trending/>}/>
+                <Route path={"/holders"} element={<Holders/>} />
                 <Route path={"/news"} element={<News/>}/>
                 <Route path={"/portfolio"} element={<Portfolio/>}/>
             </Routes>

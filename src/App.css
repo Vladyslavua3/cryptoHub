@@ -1,0 +1,25 @@
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+.App{
+  margin: 0 auto;
+  max-width: 1280px;
+}
+
+.header{
+  background-color: darkslateblue;
+  height: 50px;
+  border-radius: 10px;
+  display: grid;
+}
+
+/*.headerNav{*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  flex-direction: row;*/
+/*  gap: 15px;*/
+/*  list-style-type: none;*/
+/*}*/

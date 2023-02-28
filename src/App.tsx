@@ -13,9 +13,10 @@ export function App() {
     return (
         <div className="App">
             <header className={'header'}>
-                <div className={'headerTitle'}>Crypto Hub</div>
+                <div className={'headerTitle'}>Crypto <span>Hub</span></div>
             </header>
             <Nav/>
+            <div className={'main'}>
             <Routes>
                 <Route path={"/"} element={<Main/>}/>
                 <Route path={"/allCrypto"} element={<CryptoRank/>}/>
@@ -24,6 +25,7 @@ export function App() {
                 <Route path={"/news"} element={<News/>}/>
                 <Route path={"/portfolio"} element={<Portfolio/>}/>
             </Routes>
+            </div>
         </div>
     )
 }

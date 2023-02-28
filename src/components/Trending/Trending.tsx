@@ -3,6 +3,7 @@ import {AppRootStateType, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";
 import {trendingTC, TrendingType} from "../../store/trendingReducer";
 import s from './trending.module.css'
+import {TrendItem} from "./TrendItem/TrendItem";
 
 
 
@@ -20,8 +21,8 @@ export const Trending = () => {
   console.log(trendingCoins)
 
     return (
-        <div>
-            {trendingCoins.coins.map((e)=> <div className={s.trend} key={e.item.coin_id}>{e.item.name}</div>)}
+        <div className={s.trendWrapper}>
+            {trendingCoins.coins.map((e)=> <TrendItem item={e.item}/>)}
         </div>
     );
 };

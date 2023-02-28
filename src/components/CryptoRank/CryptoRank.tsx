@@ -30,8 +30,8 @@ export const CryptoRank = () => {
 
     return (
         <div className={s.wrapper}>
-            <form>
-                <input type={"search"} placeholder={'Search'}
+            <form className={s.search}>
+                <input type={"search"} placeholder={'Search Coins'}
                 onChange={handleChange} value={search}/>
             </form>
             {filteredCoin.map((e) => <Coin key={e.id}

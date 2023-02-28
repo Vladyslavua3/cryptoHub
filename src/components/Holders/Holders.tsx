@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import {holdersBTCTC, holdersType} from "../../store/holdersReducer";
 import {useEffect} from "react";
 import s from './Holders.module.css'
+import {Holder} from "./Holder/Holder";
 
 export const Holders = () => {
 
@@ -16,14 +17,11 @@ export const Holders = () => {
         dispatch(thunk)
     },[])
 
+    console.log(holders)
     return (
         <div className={s.main}>
             {holders.companies.map((e)=>{
-                return <div>
-                    <div>{e.name}</div>
-                    <div>{e.percentage_of_total_supply}</div>
-                    <div>{e.total_holdings}</div>
-                </div>
+                return <Holder name={e.name} symbol={e.symbol} country={e.country} percentage_of_total_supply={e.percentage_of_total_supply} total_current_value_usd={e.total_current_value_usd} total_entry_value_usd={e.total_entry_value_usd} total_holdings={e.total_holdings}/>
             })}
         </div>
     );

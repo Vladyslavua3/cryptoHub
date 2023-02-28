@@ -6,8 +6,6 @@ import {AppRootStateType, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";
 
 
-
-
 export const Main = () => {
 
     const dispatch = useAppDispatch()

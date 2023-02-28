@@ -1,0 +1,29 @@
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80vh;
+    height: 80px;
+    background-color:#656565;
+    border-radius: 25px;
+    margin-bottom: 25px;
+    align-items: center;
+    padding: 10px;
+}
+
+
+
+ul li{
+    list-style-type: none;
+    font-size: 18px;
+}
+ul li img {
+    width: 25px;
+}
+
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}

@@ -1,4 +1,11 @@
-.trend{
-    text-align: center;
-    margin: 100px;
+/*-*/
+
+.trendWrapper{
+    display: flex;
+    width: 80%;
+    height: 100vh;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
 }

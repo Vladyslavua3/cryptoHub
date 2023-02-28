@@ -3,17 +3,21 @@
     width: 100px; /* Set the width of the sidebar */
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
-     /* Stay at the top */
-    margin-top: 5px ;
-    background-color:darkslateblue; /* Black */
-    padding-top: 20px;
-    border-radius: 10px;
+    padding-top: 45px;
+    left: 5px;
 }
 
-.nav ul{
+.navList{
     display: flex;
-   flex-direction: column;
+    flex-direction: column;
     gap: 15px;
-    list-style-type: none;
-
 }
+
+
+.nav a{
+    text-decoration: none;
+    font-size: 20px;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+}
+

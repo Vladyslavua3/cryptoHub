@@ -5,13 +5,35 @@
 }
 
 .App{
-  margin: 0 auto;
-  max-width: 1280px;
+  display: flex;
+  background-color:#202027 ;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*max-width: 1280px;*/
+}
+.main{
+  width: 1280px;
+  background-color: #94AE93;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  min-height: 1000px;
 }
 
 .header{
-  background-color: darkslateblue;
-  height: 50px;
-  border-radius: 10px;
-  display: grid;
+  height: 80px;
+  /*border-radius: 10px;*/
+  /*display: grid;*/
+}
+
+.headerTitle{
+  font-weight: bold;
+  font-size:36px;
+  text-align: center;
+}
+
+.headerTitle span{
+  color: #94AE93;
 }

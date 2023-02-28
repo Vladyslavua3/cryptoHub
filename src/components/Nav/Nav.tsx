@@ -5,14 +5,14 @@ export const Nav = () => {
     return (
         <div>
             <nav className={s.nav}>
-                <ul className={s.navList}>
-                    <Link to={"/"}><li>Main</li> </Link>
-                    <Link to={"/allCrypto"}><li>Crypto Rank</li></Link>
-                    <Link to={"/trending"}><li>Trending</li></Link>
-                    <Link to={"/holders"}><li>Holders</li></Link>
-                    <Link to={"/news"}><li>News</li></Link>
-                    <Link to={"/portfolio"}><li>Portfolio</li></Link>
-                </ul>
+                <div className={s.navList}>
+                    <Link to={"/"}>Main</Link>
+                    <Link to={"/allCrypto"}>Crypto Rank</Link>
+                    <Link to={"/trending"}>Trending</Link>
+                    <Link to={"/holders"}>Holders</Link>
+                    <Link to={"/news"}>News</Link>
+                    <Link to={"/portfolio"}>Portfolio</Link>
+                </div>
             </nav>
         </div>
     );

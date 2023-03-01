@@ -28,6 +28,7 @@ export const CryptoRank = () => {
 
 
 
+
     return (
         <div className={s.wrapper}>
             <form className={s.search}>

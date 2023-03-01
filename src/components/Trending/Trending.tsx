@@ -18,7 +18,6 @@ export const Trending = () => {
         dispatch(thunk)
     },[])
 
-  console.log(trendingCoins)
 
     return (
         <div className={s.trendWrapper}>

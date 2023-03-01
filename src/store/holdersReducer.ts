@@ -1,6 +1,5 @@
 import {Dispatch} from "redux";
 import {coinGheckoApi} from "../api/coinGheckoApi";
-import {trendingAC} from "./trendingReducer";
 
 
 export type holdersType = {

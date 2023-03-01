@@ -4,15 +4,17 @@ import thunk, {ThunkDispatch} from "redux-thunk";
 import {useDispatch} from "react-redux";
 import {trendingACType, trendingReducer} from "./trendingReducer";
 import {holderReducer, holdersACType} from "./holdersReducer";
+import {descriptionReducer, getDescriptionCoinACType} from "./descriptionReducer";
 
 
 const rootReducer = combineReducers({
     coins:coinsReducer,
     trending:trendingReducer,
-    holders:holderReducer
+    holders:holderReducer,
+    description:descriptionReducer
 })
 
-export type allActionType = getAllCoinsACType | getCoinsACType | trendingACType | holdersACType
+export type allActionType = getAllCoinsACType | getCoinsACType | trendingACType | holdersACType | getDescriptionCoinACType
 
 
 export const store = legacy_createStore(rootReducer,applyMiddleware(thunk))

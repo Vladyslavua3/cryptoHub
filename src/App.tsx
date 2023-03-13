@@ -11,6 +11,7 @@ import {CoinDescription} from "./components/Coin/CoinDescription/CoinDescription
 import {Layout, Menu} from 'antd';
 
 
+
 const {Header, Content, Footer, Sider} = Layout;
 
 export const App: React.FC = () => {

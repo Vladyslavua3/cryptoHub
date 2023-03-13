@@ -1,4 +1,4 @@
-import {AnyAction, Dispatch} from "redux";
+import {Dispatch} from "redux";
 import {coinGheckoApi} from "../api/coinGheckoApi";
 import {allActionType} from "./store";
 

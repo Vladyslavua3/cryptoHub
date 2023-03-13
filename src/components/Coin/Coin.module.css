@@ -28,3 +28,10 @@ ul li img {
 .green{
     color: green;
 }
+
+@media screen and (max-width: 1130px){
+    .hidden{
+        display: none;
+        font-size: 4px;
+    }
+}

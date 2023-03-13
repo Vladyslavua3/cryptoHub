@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import s from './Main.module.css'
 import {Coin} from "../Coin/Coin";
 import {fetchCoinsTC, initState} from "../../store/coinsReducer";
@@ -13,16 +13,16 @@ export const Main = () => {
     const coins = useSelector<AppRootStateType,initState[]>(state => state.coins)
 
 
-
     useEffect(()=>{
-       const thunk = fetchCoinsTC()
-        dispatch(thunk)
+           const thunk = fetchCoinsTC()
+           dispatch(thunk)
     },[])
 
 
     return (
         <div className={s.main}>
             <h1>Top 10 Crypto</h1>
+
             {coins.map((e) => <Coin key={e.id}
                                              id={e.id}
                                              symbol={e.symbol}

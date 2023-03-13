@@ -14,6 +14,7 @@ export const CryptoRank = () => {
     const allCoins = useSelector<AppRootStateType,initState[]>(state => state.coins)
 
 
+
     useEffect(()=> {
         const thunk = fetchAllCoinsTC()
         dispatch(thunk)

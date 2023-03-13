@@ -2,6 +2,7 @@ import React from 'react';
 import {companiesType} from "../../../store/holdersReducer";
 
 import s from './Holder.module.css'
+import {numbers} from "../../../utils/Numbers";
 
 
 
@@ -20,8 +21,8 @@ export const Holder = ({name, symbol,
                 <div>{symbol}</div>
             </div>
             <div>
-                <div>How Much Spend:{total_entry_value_usd}</div>
-                <div>How Now Got:{total_current_value_usd}</div>
+                <div>How Much Spend:{numbers(total_entry_value_usd)}</div>
+                <div>How Now Got:{numbers(total_current_value_usd)}</div>
                 <div>Percent of total supply:{percentage_of_total_supply}</div>
             </div>
         </div>

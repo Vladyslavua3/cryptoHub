@@ -17,7 +17,9 @@ export const Holders = () => {
         dispatch(thunk)
     },[])
 
-    console.log(holders)
+    if(!holders) return <div>Sorry Coinghecko Api not working now</div>
+
+
     return (
         <div className={s.main}>
             {holders.companies.map((e)=>{

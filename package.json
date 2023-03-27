@@ -1,6 +1,6 @@
 {
   "name": "cryptohub",
-  "homepage":"https://Vladyslavua3.github.io/cryptoHub",
+  "homepage": "https://Vladyslavua3.github.io/cryptoHub",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -17,6 +17,7 @@
     "gh-pages": "^5.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.8",
     "react-redux": "^8.0.5",
     "react-router-dom": "6",
     "redux": "^4.2.1",

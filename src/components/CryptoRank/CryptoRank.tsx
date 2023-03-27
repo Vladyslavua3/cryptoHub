@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {AppRootStateType, useAppDispatch} from "../../store/store";
 import {fetchAllCoinsTC, initState} from "../../store/coinsReducer";
 import {Coin} from "../Coin/Coin";
@@ -26,7 +26,6 @@ export const CryptoRank = () => {
     }
 
     const filteredCoin = allCoins.filter(coin => coin.name.toLowerCase().includes(search.toLowerCase()))
-
 
 
 

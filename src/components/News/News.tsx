@@ -1,10 +1,19 @@
 import React from 'react';
+import {Login} from "../Login/Login";
 
-export const News = () => {
+
+interface NewsType {
+    auth:boolean
+}
+
+export const News = ({auth}: NewsType) => {
     return (
-        <div>
-            Coming Soon...
-        </div>
+        auth ?
+            <div>
+                Coming Soon...
+            </div>
+            :
+            <Login/>
     );
 };
 

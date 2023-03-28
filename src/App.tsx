@@ -4,7 +4,7 @@ import {Main} from "./components/Main/Main";
 import {CryptoRank} from "./components/CryptoRank/CryptoRank";
 import {News} from "./components/News/News";
 import {Portfolio} from "./components/Portfolio/Portfolio";
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {Trending} from "./components/Trending/Trending";
 import {Holders} from "./components/Holders/Holders";
 import {CoinDescription} from "./components/Coin/CoinDescription/CoinDescription";
@@ -12,10 +12,13 @@ import {Layout, Menu} from 'antd';
 
 
 
+
 const {Header, Content, Footer, Sider} = Layout;
 
-export const App: React.FC = () => {
+export const App = () => {
 
+
+    const auth = false
 
     return (
         <Layout style={{height: '100%'}}>
@@ -31,7 +34,7 @@ export const App: React.FC = () => {
                     mode="inline"
                     defaultSelectedKeys={['1']}
                 >
-                    <Nav/>
+                   <Nav/>
                 </Menu>
             </Sider>
             <Layout>
@@ -40,14 +43,18 @@ export const App: React.FC = () => {
                 </Header>
                 <Content style={{margin: '24px 16px 0'}}>
                     <div style={{padding: 24, minHeight: 360, backgroundColor: '#94AE93'}}>
+
                         <Routes>
-                            <Route path={"/"} element={<Main/>}/>
-                            <Route path={"/allCrypto"} element={<CryptoRank/>}/>
-                            <Route path={"/trending"} element={<Trending/>}/>
-                            <Route path={"/holders"} element={<Holders/>}/>
-                            <Route path={"/news"} element={<News/>}/>
-                            <Route path={"/portfolio"} element={<Portfolio/>}/>
-                            <Route path={"/:id"} element={<CoinDescription/>}/>
+
+                            <Route path={"/cryptoHub"} element={<Main/>}/>
+                            <Route path={"/cryptoHub/allCrypto"} element={<CryptoRank/>}/>
+                            <Route path={"/cryptoHub/trending"} element={<Trending/>}/>
+                            <Route path={"/cryptoHub/holders"} element={<Holders auth={auth}/>}/>
+                            <Route path={"/cryptoHub/news"} element={<News auth={auth}/>}/>
+                            <Route path={"/cryptoHub/portfolio"} element={<Portfolio auth={auth}/>}/>
+                            <Route path={"/cryptoHub/:id"} element={<CoinDescription/>}/>
+                            <Route path={"*"} element={<Navigate to="/cryptoHub"/>}/>
+
                         </Routes>
                     </div>
                 </Content>

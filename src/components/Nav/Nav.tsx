@@ -8,12 +8,12 @@ export const Nav = () => {
         <div>
             <nav className={s.nav}>
                 <div className={s.navList}>
-                    <Link to={"/"}>Main</Link>
-                    <Link to={"/allCrypto"}>Crypto Rank</Link>
-                    <Link to={"/trending"}>Trending</Link>
-                    <Link to={"/holders"}>Holders</Link>
-                    <Link to={"/news"}>News</Link>
-                    <Link to={"/portfolio"}>Portfolio</Link>
+                    <Link to={"/cryptoHub"}>Main</Link>
+                    <Link to={"/cryptoHub/allCrypto"}>Crypto Rank</Link>
+                    <Link to={"/cryptoHub/trending"}>Trending</Link>
+                    <Link to={"/cryptoHub/holders"}>Holders</Link>
+                    <Link to={"/cryptoHub/news"}>News</Link>
+                    <Link to={"/cryptoHub/portfolio"}>Portfolio</Link>
                 </div>
             </nav>
         </div>

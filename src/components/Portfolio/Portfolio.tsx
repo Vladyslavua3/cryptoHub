@@ -1,8 +1,13 @@
 import React from 'react';
 import {Login} from "../Login/Login";
 
-export const Portfolio = () => {
+interface PortfolioType {
+    auth:boolean
+}
+
+
+export const Portfolio = ({auth}:PortfolioType) => {
     return (
-            <Login />
+         auth  ? <div>Portfolio</div> : <Login />
     );
 };

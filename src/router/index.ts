@@ -1,7 +1,6 @@
-import React, {ReactNode} from "react";
+import React from "react";
 import {Login} from "../components/Login/Login";
 import {Calendar} from "../components/Calendar/Calendar";
-import {RouteProps} from "react-router-dom";
 
 export interface IRoute {
     path:string,

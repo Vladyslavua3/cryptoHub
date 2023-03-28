@@ -3,12 +3,12 @@ import {Login} from "../Login/Login";
 
 
 interface NewsType {
-    auth:boolean
+    isAuth:boolean
 }
 
-export const News = ({auth}: NewsType) => {
+export const News = ({isAuth}: NewsType) => {
     return (
-        auth ?
+        isAuth ?
             <div>
                 Coming Soon...
             </div>

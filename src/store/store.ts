@@ -5,16 +5,23 @@ import {useDispatch} from "react-redux";
 import {trendingACType, trendingReducer} from "./trendingReducer";
 import {holderReducer, holdersACType} from "./holdersReducer";
 import {descriptionReducer, getDescriptionCoinACType} from "./descriptionReducer";
+import {authReducer, setAuthAction} from "./auth";
 
 
 const rootReducer = combineReducers({
     coins:coinsReducer,
     trending:trendingReducer,
     holders:holderReducer,
-    description:descriptionReducer
+    description:descriptionReducer,
+    auth:authReducer
 })
 
-export type allActionType = getAllCoinsACType | getCoinsACType | trendingACType | holdersACType | getDescriptionCoinACType
+export type allActionType = getAllCoinsACType
+    | getCoinsACType
+    | trendingACType
+    | holdersACType
+    | getDescriptionCoinACType
+    | setAuthAction
 
 
 export const store = legacy_createStore(rootReducer,applyMiddleware(thunk))

@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {SubmitHandler, useForm} from "react-hook-form";
+
+import {Layout, Row} from "antd";
+import {LoginForm} from "./LoginForm";
 
 
 interface IFormInput{
@@ -10,8 +12,6 @@ interface IFormInput{
 
 
 export const Login = () => {
-    const { register, handleSubmit } = useForm<IFormInput>();
-    const onSubmit:SubmitHandler<IFormInput> = data => setUserData(data);
     const [userData,setUserData] = useState<IFormInput>({
         firstName:'',
         lastName:'',
@@ -22,14 +22,10 @@ export const Login = () => {
 
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <label htmlFor={"firstName"}>Login</label>
-            <input {...register("firstName", { required: true, maxLength: 20 })} />
-            <label htmlFor={"lastName"}>Last Name</label>
-            <input {...register("lastName", { pattern: /^[A-Za-z]+$/i })} />
-            <label htmlFor={"age"}>Age</label>
-            <input type="number" {...register("age", { min: 18, max: 99 })} />
-            <input type="submit" />
-        </form>
+        <Layout>
+            <Row justify={"center"} align={"middle"} style={{height:'calc(100vh - 64px)'}} >
+                       <LoginForm />
+            </Row>
+        </Layout>
     );
 };

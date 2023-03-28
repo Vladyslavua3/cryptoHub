@@ -9,6 +9,11 @@ import {Trending} from "./components/Trending/Trending";
 import {Holders} from "./components/Holders/Holders";
 import {CoinDescription} from "./components/Coin/CoinDescription/CoinDescription";
 import {Layout, Menu} from 'antd';
+import {Login} from "./components/Login/Login";
+import {useNavigate} from "react-router";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "./store/store";
+
 
 
 
@@ -18,7 +23,9 @@ const {Header, Content, Footer, Sider} = Layout;
 export const App = () => {
 
 
-    const auth = false
+    const router = useNavigate()
+
+    const isAuth = useSelector<AppRootStateType,boolean>(state => state.auth.isAuth)
 
     return (
         <Layout style={{height: '100%'}}>
@@ -28,6 +35,22 @@ export const App = () => {
                 style={{backgroundColor: '#202027'}}
             >
                 <div className="logo"/>
+                {isAuth ?
+                    <>
+                        <div style={{color:"whitesmoke",fontSize:'15px'}}>Gera</div>
+                    <Menu theme={'dark'} mode={'horizontal'} selectable={false} style={{display:'flex'}} >
+                        <Menu.Item key={'2'} onClick={()=> alert('Go away')} >
+                            Log Out
+                        </Menu.Item>
+                    </Menu>
+                    </>
+                :
+                    <Menu theme={'dark'} mode={'horizontal'} selectable={false} style={{display:'flex'}} >
+                    <Menu.Item key={'1'} onClick={()=> router("/cryptoHub/login")} >
+                    Login
+                    </Menu.Item>
+                    </Menu>
+                }
                 <Menu
                     style={{backgroundColor: '#202027', marginTop: '60px'}}
                     theme="dark"
@@ -49,11 +72,12 @@ export const App = () => {
                             <Route path={"/cryptoHub"} element={<Main/>}/>
                             <Route path={"/cryptoHub/allCrypto"} element={<CryptoRank/>}/>
                             <Route path={"/cryptoHub/trending"} element={<Trending/>}/>
-                            <Route path={"/cryptoHub/holders"} element={<Holders auth={auth}/>}/>
-                            <Route path={"/cryptoHub/news"} element={<News auth={auth}/>}/>
-                            <Route path={"/cryptoHub/portfolio"} element={<Portfolio auth={auth}/>}/>
+                            <Route path={"/cryptoHub/holders"} element={<Holders isAuth={isAuth}/>}/>
+                            <Route path={"/cryptoHub/news"} element={<News isAuth={isAuth}/>}/>
+                            <Route path={"/cryptoHub/portfolio"} element={<Portfolio isAuth={isAuth}/>}/>
                             <Route path={"/cryptoHub/:id"} element={<CoinDescription/>}/>
                             <Route path={"*"} element={<Navigate to="/cryptoHub"/>}/>
+                            <Route path={"/cryptoHub/login"} element={<Login/>}/>
 
                         </Routes>
                     </div>

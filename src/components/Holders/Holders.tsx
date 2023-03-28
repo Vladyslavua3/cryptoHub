@@ -9,11 +9,11 @@ import {Login} from "../Login/Login";
 
 
 interface HoldersType {
-    auth:boolean
+    isAuth:boolean
 }
 
 
-export const Holders = ({auth}:HoldersType) => {
+export const Holders = ({isAuth}:HoldersType) => {
 
     const dispatch = useAppDispatch()
 
@@ -31,10 +31,18 @@ export const Holders = ({auth}:HoldersType) => {
 
 
     return (
-        auth ?
+        isAuth ?
         <div className={s.main}>
             {holders.companies.map((e)=>{
-                return <Holder name={e.name} symbol={e.symbol} country={e.country} percentage_of_total_supply={e.percentage_of_total_supply} total_current_value_usd={e.total_current_value_usd} total_entry_value_usd={e.total_entry_value_usd} total_holdings={e.total_holdings}/>
+                return <Holder
+                    name={e.name}
+                    symbol={e.symbol}
+                    country={e.country}
+                    percentage_of_total_supply={e.percentage_of_total_supply}
+                    total_current_value_usd={e.total_current_value_usd}
+                    total_entry_value_usd={e.total_entry_value_usd}
+                    total_holdings={e.total_holdings}
+                />
             })}
         </div>
             :

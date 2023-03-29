@@ -1,6 +1,6 @@
 import {IUser} from "../../models/User";
 
-interface authStateType {
+export interface authStateType {
     isAuth: boolean
     user:IUser
     isLoading:boolean

@@ -1,30 +1,28 @@
 import React, {useState} from 'react';
 
-import {Layout, Row} from "antd";
+import {Card, Layout, Row} from "antd";
 import {LoginForm} from "./LoginForm";
-
-
-interface IFormInput{
-    firstName: string;
-    lastName: string;
-    age: number
-}
+import {useNavigate} from "react-router";
+import {useSelector} from "react-redux";
+import {AppRootStateType} from "../../store/store";
+import {authStateType} from "../../store/auth";
 
 
 export const Login = () => {
-    const [userData,setUserData] = useState<IFormInput>({
-        firstName:'',
-        lastName:'',
-        age:0
-    })
 
-    console.log(userData)
+    const {isAuth} = useSelector<AppRootStateType,authStateType>(state => state.auth)
+
+    const nav = useNavigate()
+
+    if(isAuth) nav("/cryptoHub")
 
 
     return (
         <Layout>
             <Row justify={"center"} align={"middle"} style={{height:'calc(100vh - 64px)'}} >
-                       <LoginForm />
+                <Card>
+                    <LoginForm />
+                </Card>
             </Row>
         </Layout>
     );

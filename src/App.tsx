@@ -12,7 +12,11 @@ import {Layout, Menu} from 'antd';
 import {Login} from "./components/Login/Login";
 import {useNavigate} from "react-router";
 import {useSelector} from "react-redux";
-import {AppRootStateType} from "./store/store";
+import {AppRootStateType, useAppDispatch} from "./store/store";
+import {AuthActionCreators} from "./store/auth/actionCreators";
+import {authStateType} from "./store/auth";
+import {useEffect} from "react";
+import {IUser} from "./models/User";
 
 
 
@@ -22,10 +26,20 @@ const {Header, Content, Footer, Sider} = Layout;
 
 export const App = () => {
 
+    const dispatch = useAppDispatch()
 
     const router = useNavigate()
 
-    const isAuth = useSelector<AppRootStateType,boolean>(state => state.auth.isAuth)
+    const {isAuth,user} = useSelector<AppRootStateType,authStateType>(state => state.auth)
+
+
+
+    useEffect(()=>{
+        if(localStorage.getItem('auth')){
+            dispatch(AuthActionCreators.setUser({username:localStorage.getItem('username')}as IUser))
+            dispatch(AuthActionCreators.setIsAuth(true))
+        }
+    },[])
 
     return (
         <Layout style={{height: '100%'}}>
@@ -37,9 +51,9 @@ export const App = () => {
                 <div className="logo"/>
                 {isAuth ?
                     <>
-                        <div style={{color:"whitesmoke",fontSize:'15px'}}>Gera</div>
+                        <div style={{color:"whitesmoke",fontSize:'15px'}}>{user.username}</div>
                     <Menu theme={'dark'} mode={'horizontal'} selectable={false} style={{display:'flex'}} >
-                        <Menu.Item key={'2'} onClick={()=> alert('Go away')} >
+                        <Menu.Item key={'2'} onClick={()=> dispatch(AuthActionCreators.logOut())} >
                             Log Out
                         </Menu.Item>
                     </Menu>

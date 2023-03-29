@@ -4,6 +4,7 @@ import {Dispatch} from "redux";
 import axios from "axios";
 
 
+
 export const AuthActionCreators = {
     setUser: (user: IUser): setUserAction => ({type: AuthActionEnum.SET_USER, payload: user}),
     setIsAuth: (isAuth: boolean): setAuthAction => ({type: AuthActionEnum.SET_AUTH, payload: isAuth}),
@@ -12,18 +13,31 @@ export const AuthActionCreators = {
     login:(username:string,password:string) => async (dispatch:Dispatch) =>{
         try {
             dispatch(AuthActionCreators.setIsLoading(true))
-            const mockUsers = await axios.get('./users.json')
-            console.log(mockUsers)
+            setTimeout(async ()=>{
+                const response = await axios.get<IUser[]>('./users.json')
+                const mockUser = response.data.find(user => user.username === username && user.password === password)
+                if(mockUser){
+                    localStorage.setItem('auth','true')
+                    localStorage.setItem('username', mockUser.username)
+                    dispatch(AuthActionCreators.setIsAuth(true))
+                    dispatch(AuthActionCreators.setUser(mockUser))
+                }else{
+                    dispatch(AuthActionCreators.setError("Wrong password or email"))
+                }
+                dispatch(AuthActionCreators.setIsLoading(false))
+            },1000)
+
         }catch (e) {
             dispatch(AuthActionCreators.setError("Something gone wrong"))
         }
     },
     logOut:() => async (dispatch:Dispatch) =>{
-        try {
 
-        }catch (e) {
+            localStorage.removeItem('auth')
+            localStorage.removeItem('username')
+            dispatch(AuthActionCreators.setUser({} as IUser))
+            dispatch(AuthActionCreators.setIsAuth(false))
 
-        }
     }
 
 }

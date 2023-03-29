@@ -1,9 +1,14 @@
 import React from 'react';
 import {Button, Form, Input} from "antd";
+import {useAppDispatch} from "../../store/store";
+import {AuthActionCreators} from "../../store/auth/actionCreators";
 
 export const LoginForm = () => {
 
-    const submit = (data:any) => console.log(data)
+
+    const dispatch = useAppDispatch()
+
+    const submit = () => dispatch(AuthActionCreators.login('',''))
 
     return (
 

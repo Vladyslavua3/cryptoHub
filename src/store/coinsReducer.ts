@@ -14,6 +14,7 @@ export type initState = {
         high_24h: number,
         low_24h: number,
         price_change_percentage_24h:number,
+        error:string
 }
 
 
@@ -44,14 +45,29 @@ export type getAllCoinsACType = ReturnType<typeof getAllCoinsAC>
 
 
 
-export const fetchCoinsTC = () => (dispatch:Dispatch) => {
-    coinGheckoApi.getCoins().then((res) => {
-        dispatch(getCoinsAC(res.data))
-    })
+export const fetchCoinsTC = () => async (dispatch:Dispatch) => {
+    try {
+        const fetchData = await coinGheckoApi.getCoins()
+        dispatch(getCoinsAC(fetchData.data))
+    }
+        catch (e) {
+            dispatch(setErrorCoin('Sorry Api is free that why sometimes it broken'))
+        }
 }
 
-export const fetchAllCoinsTC = () => (dispatch:Dispatch) => {
-    coinGheckoApi.getAllCoins().then((res) => {
-        dispatch(getCoinsAC(res.data))
-    })
+export const fetchAllCoinsTC = () => async (dispatch:Dispatch) => {
+    try {
+        const fetchData = await coinGheckoApi.getAllCoins()
+        dispatch(getCoinsAC(fetchData.data))
+    }
+    catch (e) {
+        dispatch(setErrorCoin('Sorry Api is free that why sometimes it broken'))
+    }
+
 }
+
+
+export const setErrorCoin = (error:string) => ({type:"SET_COIN_ERROR",payload:error} as const)
+
+export type setErrorCoinType = ReturnType<typeof setErrorCoin>
+

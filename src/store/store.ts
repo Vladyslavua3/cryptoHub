@@ -1,11 +1,11 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import {coinsReducer, getAllCoinsACType, getCoinsACType} from "./coinsReducer";
+import {coinsReducer, getAllCoinsACType, getCoinsACType, setErrorCoinType} from "./coinsReducer";
 import thunk, {ThunkDispatch} from "redux-thunk";
 import {useDispatch} from "react-redux";
 import {trendingACType, trendingReducer} from "./trendingReducer";
 import {holderReducer, holdersACType} from "./holdersReducer";
 import {descriptionReducer, getDescriptionCoinACType} from "./descriptionReducer";
-import {authReducer, setAuthAction} from "./auth";
+import {AuthAction, authReducer} from "./auth";
 
 
 const rootReducer = combineReducers({
@@ -21,7 +21,8 @@ export type allActionType = getAllCoinsACType
     | trendingACType
     | holdersACType
     | getDescriptionCoinACType
-    | setAuthAction
+    | AuthAction
+    | setErrorCoinType
 
 
 export const store = legacy_createStore(rootReducer,applyMiddleware(thunk))

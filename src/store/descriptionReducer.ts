@@ -1,6 +1,6 @@
-
 import {Dispatch} from "redux";
 import {coinGheckoApi} from "../api/coinGheckoApi";
+
 
 export type initDesState = {
     id: string,
@@ -12,6 +12,7 @@ export type initDesState = {
     image:{
         large:string
     }
+    error:string
 }
 
 
@@ -24,7 +25,8 @@ const initialDesState:initDesState = {
     },
     image:{
         large:''
-    }
+    },
+    error:''
 }
 
 
@@ -49,14 +51,24 @@ export const descriptionReducer = (state:initDesState = initialDesState ,action:
 }
 
 
-export const getDescriptionCoinAC = (coin:initDesState) =>({type:'GET-DESCRIPTION-COINS',coin} as const)
+export const getDescriptionCoinAC = (coin:initDesState) =>({type:"GET-DESCRIPTION-COINS",coin} as const)
 
 export type getDescriptionCoinACType = ReturnType<typeof getDescriptionCoinAC>
 
 
+export const setErrorDes = (error:string) => ({type:"SET_DES_ERROR",payload:error} as const)
 
-export const fetchDescriptionTC = (id:string) => (dispatch:Dispatch) => {
-    coinGheckoApi.getDescription(id).then((res) => {
-        dispatch(getDescriptionCoinAC(res.data))
-    })
+export type setErrorDesType = ReturnType<typeof setErrorDes>
+
+
+
+export const fetchDescriptionTC = (id:string) => async (dispatch:Dispatch) => {
+    try {
+        const fetchData = await coinGheckoApi.getDescription(id)
+        dispatch(getDescriptionCoinAC(fetchData.data))
+    }
+        catch (e) {
+
+        }
+
 }

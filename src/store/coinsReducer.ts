@@ -1,6 +1,6 @@
-import {Dispatch} from "redux";
 import {coinGheckoApi} from "../api/coinGheckoApi";
-import {allActionType} from "./store";
+import {createSlice} from "@reduxjs/toolkit";
+import {createAppAsyncThunk} from "../utils/create-app-async-thunk";
 
 export type initState = {
         id: string,
@@ -22,52 +22,70 @@ const initialState:initState[] = []
 
 
 
-export const coinsReducer = (state:initState[] = initialState ,action:allActionType) => {
-       switch (action.type) {
-           case "GET-COINS":
-               return [...action.coins]
-           case "GET-ALL-COINS":{
-               return [...action.coins]
-           }
-           default:
-               return state
-       }
-}
+const fetchCoins = createAppAsyncThunk<{coins:initState[]},void>
+('coins/fetchCoins', async (_,thunkAPI) => {
 
+    const {dispatch, rejectWithValue} = thunkAPI
 
-export const getCoinsAC = (coins:initState[]) =>({type:'GET-COINS',coins} as const)
-
-export const getAllCoinsAC = (coins:initState[]) =>({type:'GET-ALL-COINS',coins} as const)
-
-
-export type getCoinsACType = ReturnType<typeof getCoinsAC>
-export type getAllCoinsACType = ReturnType<typeof getAllCoinsAC>
-
-
-
-export const fetchCoinsTC = () => async (dispatch:Dispatch) => {
     try {
         const fetchData = await coinGheckoApi.getCoins()
-        dispatch(getCoinsAC(fetchData.data))
-    }
-        catch (e) {
-            dispatch(setErrorCoin('Sorry Api is free that why sometimes it broken'))
-        }
-}
-
-export const fetchAllCoinsTC = () => async (dispatch:Dispatch) => {
-    try {
-        const fetchData = await coinGheckoApi.getAllCoins()
-        dispatch(getCoinsAC(fetchData.data))
+        const coins = fetchData.data
+        return {coins}
     }
     catch (e) {
-        dispatch(setErrorCoin('Sorry Api is free that why sometimes it broken'))
+        dispatch(coinsActions.setErrorCoin('Sorry Api is free that why sometimes it broken'))
+        return rejectWithValue(null)
+    }
+})
+
+
+const fetchAllCoins = createAppAsyncThunk<{coins:initState[]},void>
+('coins/fetchAllCoins',async (_,thunkAPI) => {
+
+    const {dispatch, rejectWithValue} = thunkAPI
+
+    try {
+        const fetchData = await coinGheckoApi.getAllCoins()
+
+        const coins = fetchData.data
+
+        return {coins}
+    }
+    catch (e) {
+        dispatch(coinsActions.setErrorCoin('Sorry Api is free that why sometimes it broken'))
+        return rejectWithValue(null)
     }
 
-}
+})
 
 
-export const setErrorCoin = (error:string) => ({type:"SET_COIN_ERROR",payload:error} as const)
+const slice = createSlice({
+    name:'coins',
+    initialState:initialState,
+    reducers:{
+        setErrorCoin:(state, action) => {
+            state = action.payload.error
+        }
+    },
+    extraReducers:builder => {
+        builder.addCase(fetchCoins.fulfilled,(state, action)=>{
+            return state = action.payload.coins
+        })
+            .addCase(fetchAllCoins.fulfilled,(state,action)=>{
+                return state = action.payload.coins
+            })
+    }
+})
 
-export type setErrorCoinType = ReturnType<typeof setErrorCoin>
+
+
+export const coinsReducer = slice.reducer
+export const coinsActions = slice.actions
+export const coinsThunks = {fetchCoins,fetchAllCoins}
+
+
+
+
+
+
 

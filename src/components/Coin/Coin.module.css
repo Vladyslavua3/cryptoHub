@@ -1,37 +1,75 @@
-.wrapper{
+/*.wrapper{*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: space-between;*/
+/*    width: 80vw;*/
+/*    height: 80px;*/
+/*    background-color:#656565;*/
+/*    border-radius: 25px;*/
+/*    margin-bottom: 25px;*/
+/*    align-items: center;*/
+/*    padding: 10px;*/
+/*}*/
+
+.coinRow {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    width: 80vw;
-    height: 80px;
-    background-color:#656565;
-    border-radius: 25px;
-    margin-bottom: 25px;
     align-items: center;
-    padding: 10px;
+    background-color: #26272b;
+    box-shadow: 0 0 12px #18191b;
+    border-radius: 8px;
+    margin: 2rem 1rem;
+    padding: .7rem 1rem;
+}
+
+.coinRow:hover {
+    transform: scale(1.04);
+    transition: .3s ease-in-out;
+    cursor: pointer;
+}
+
+img {
+    height: 40px;
+    margin-right: 8px;
+    width: auto;
 }
 
 
-ul li{
-    list-style-type: none;
-    font-size: 18px;
-}
-ul li img {
-    width: 25px;
+
+.imgSymbol {
+    display: flex;
+    align-items: center;
 }
 
 
 
-.red{
-    color: red;
-}
-.green{
-    color: green;
-}
-
-@media screen and (max-width: 1130px){
-    .hidden{
+@media screen and (max-width: 720px) {
+    .hideMobile {
         display: none;
-        font-size: 4px;
     }
 }
+
+
+/*ul li{*/
+/*    list-style-type: none;*/
+/*    font-size: 18px;*/
+/*}*/
+/*ul li img {*/
+/*    width: 25px;*/
+/*}*/
+
+
+
+/*.red{*/
+/*    color: red;*/
+/*}*/
+/*.green{*/
+/*    color: green;*/
+/*}*/
+
+/*@media screen and (max-width: 1130px){*/
+/*    .hidden{*/
+/*        display: none;*/
+/*        font-size: 4px;*/
+/*    }*/
+/*}*/

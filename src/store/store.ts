@@ -1,11 +1,12 @@
-import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import {coinsReducer, getAllCoinsACType, getCoinsACType, setErrorCoinType} from "./coinsReducer";
-import thunk, {ThunkDispatch} from "redux-thunk";
+import {AnyAction, combineReducers} from "redux";
+import {coinsReducer} from "./coinsReducer";
+import {ThunkDispatch} from "redux-thunk";
 import {useDispatch} from "react-redux";
-import {trendingACType, trendingReducer} from "./trendingReducer";
-import {holderReducer, holdersACType} from "./holdersReducer";
-import {descriptionReducer, getDescriptionCoinACType} from "./descriptionReducer";
-import {AuthAction, authReducer} from "./auth";
+import {trendingReducer} from "./trendingReducer";
+import {holderReducer} from "./holdersReducer";
+import {descriptionReducer} from "./descriptionReducer";
+import {authReducer} from "./auth";
+import {configureStore} from "@reduxjs/toolkit";
 
 
 const rootReducer = combineReducers({
@@ -16,20 +17,14 @@ const rootReducer = combineReducers({
     auth:authReducer
 })
 
-export type allActionType = getAllCoinsACType
-    | getCoinsACType
-    | trendingACType
-    | holdersACType
-    | getDescriptionCoinACType
-    | AuthAction
-    | setErrorCoinType
 
-
-export const store = legacy_createStore(rootReducer,applyMiddleware(thunk))
+export const store = configureStore({
+    reducer:rootReducer
+})
 
 export type AppRootStateType = ReturnType<typeof rootReducer>
 
-export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, allActionType>
+export type AppThunkDispatch = ThunkDispatch<AppRootStateType, unknown, AnyAction>
 
 export const useAppDispatch = () => useDispatch<AppThunkDispatch>()
 

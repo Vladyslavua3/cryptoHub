@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {AppRootStateType, useAppDispatch} from "../../store/store";
 import {useSelector} from "react-redux";
-import {trendingTC, TrendingType} from "../../store/trendingReducer";
+import { trendingThunks, TrendingType} from "../../store/trendingReducer";
 import s from './trending.module.css'
 import {TrendItem} from "./TrendItem/TrendItem";
+import {AppRootStateType, useAppDispatch} from "../../store/store";
 
 
 
@@ -14,14 +14,13 @@ export const Trending = () => {
     const trendingCoins = useSelector<AppRootStateType,TrendingType>(state => state.trending)
 
     useEffect(()=>{
-        const thunk = trendingTC()
-        dispatch(thunk)
+        dispatch(trendingThunks.trendingFetch())
     },[])
 
 
     return (
         <div className={s.trendWrapper}>
-            {trendingCoins.coins.map((e)=> <TrendItem item={e.item}/>)}
+            {trendingCoins.coins.map((e)=> <TrendItem key={e.item.coin_id} item={e.item}/>)}
         </div>
     );
 };

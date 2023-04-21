@@ -11,6 +11,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.0.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/react-router": "^5.1.20",
     "antd": "^5.2.3",

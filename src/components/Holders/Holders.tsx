@@ -4,21 +4,22 @@ import {holdersBTCTC, holdersType} from "../../store/holdersReducer";
 import {useEffect} from "react";
 import s from './Holders.module.css'
 import {Holder} from "./Holder/Holder";
-import {Login} from "../Login/Login";
-
+import {useAuth0, withAuthenticationRequired} from "@auth0/auth0-react";
 
 
 interface HoldersType {
     isAuth:boolean
 }
 
-
-export const Holders = ({isAuth}:HoldersType) => {
+ const Holders = () => {
 
     const dispatch = useAppDispatch()
 
     const holders = useSelector<AppRootStateType,holdersType>(state => state.holders)
 
+    const {user} = useAuth0();
+
+    console.log(user)
 
     useEffect(()=>{
         const thunk = holdersBTCTC()
@@ -31,7 +32,7 @@ export const Holders = ({isAuth}:HoldersType) => {
 
 
     return (
-        isAuth ?
+
         <div className={s.main}>
             {holders.companies.map((e)=>{
                 return <Holder
@@ -45,7 +46,11 @@ export const Holders = ({isAuth}:HoldersType) => {
                 />
             })}
         </div>
-            :
-            <Login/>
+
     );
 };
+
+
+export default withAuthenticationRequired(Holders,{
+    onRedirecting: () => <h1>loading...</h1>
+})

@@ -23,7 +23,7 @@ export const Coin = (props:CoinsType) => {
                     <p>{props.symbol.toUpperCase()}</p>
                 </div>
                 <p>${props.current_price.toLocaleString()}</p>
-                <p>{props.price_change_percentage_24h.toFixed(2)}</p>
+                <p className={s.hideMobile}>{props.price_change_percentage_24h.toFixed(2)}</p>
                 <p className={s.hideMobile}>${props.total_volume.toLocaleString()}</p>
                 <p className='hide-mobile'>${props.market_cap.toLocaleString()}</p>
             </div>

@@ -6,17 +6,16 @@ import {News} from "./components/News/News";
 import {Portfolio} from "./components/Portfolio/Portfolio";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {Trending} from "./components/Trending/Trending";
-import {Holders} from "./components/Holders/Holders";
+import Holders from "./components/Holders/Holders";
 import {CoinDescription} from "./components/Coin/CoinDescription/CoinDescription";
 import {Layout, Menu} from 'antd';
 import {Login} from "./components/Login/Login";
 import {useNavigate} from "react-router";
-import {useSelector} from "react-redux";
-import {AppRootStateType, useAppDispatch} from "./store/store";
+import {useAppDispatch} from "./store/store";
 import {AuthActionCreators} from "./store/auth/actionCreators";
-import {authStateType} from "./store/auth";
-import {useEffect} from "react";
-import {IUser} from "./models/User";
+import {useAuth0} from "@auth0/auth0-react";
+import LoginButton from "../src/utils/authButtons/LoginButton";
+import LogoutButton from "../src/utils/authButtons/LogoutButton";
 
 
 
@@ -30,16 +29,20 @@ export const App = () => {
 
     const router = useNavigate()
 
-    const {isAuth,user} = useSelector<AppRootStateType,authStateType>(state => state.auth)
+    const {isLoading,isAuthenticated,error,user} = useAuth0()
+    // const {isAuth,user} = useSelector<AppRootStateType,authStateType>(state => state.auth)
+
+
+    if(error) return <div>Oops...</div>
 
 
 
-    useEffect(()=>{
-        if(localStorage.getItem('auth')){
-            dispatch(AuthActionCreators.setUser({username:localStorage.getItem('username')}as IUser))
-            dispatch(AuthActionCreators.setIsAuth(true))
-        }
-    },[])
+    // useEffect(()=>{
+    //     if(localStorage.getItem('auth')){
+    //         dispatch(AuthActionCreators.setUser({username:localStorage.getItem('username')}as IUser))
+    //         dispatch(AuthActionCreators.setIsAuth(true))
+    //     }
+    // },[])
 
     return (
         <Layout style={{height: '100%'}}>
@@ -49,19 +52,19 @@ export const App = () => {
                 style={{backgroundColor: '#202027'}}
             >
                 <div className="logo"/>
-                {isAuth ?
+                {isAuthenticated ?
                     <>
-                        <div style={{color:"whitesmoke",fontSize:'15px'}}>{user.username}</div>
+                        <div style={{color:"whitesmoke",fontSize:'15px'}}>{ user?.name}</div>
                     <Menu theme={'dark'} mode={'horizontal'} selectable={false} style={{display:'flex'}} >
                         <Menu.Item key={'2'} onClick={()=> dispatch(AuthActionCreators.logOut())} >
-                            Log Out
+                          <LogoutButton/>
                         </Menu.Item>
                     </Menu>
                     </>
                 :
                     <Menu theme={'dark'} mode={'horizontal'} selectable={false} style={{display:'flex'}} >
                     <Menu.Item key={'1'} onClick={()=> router("/cryptoHub/login")} >
-                    Login
+                    <LoginButton/>
                     </Menu.Item>
                     </Menu>
                 }
@@ -86,9 +89,9 @@ export const App = () => {
                             <Route path={"/cryptoHub"} element={<Main/>}/>
                             <Route path={"/cryptoHub/allCrypto"} element={<CryptoRank/>}/>
                             <Route path={"/cryptoHub/trending"} element={<Trending/>}/>
-                            <Route path={"/cryptoHub/holders"} element={<Holders isAuth={isAuth}/>}/>
-                            <Route path={"/cryptoHub/news"} element={<News isAuth={isAuth}/>}/>
-                            <Route path={"/cryptoHub/portfolio"} element={<Portfolio isAuth={isAuth}/>}/>
+                            <Route path={"/cryptoHub/holders"} element={isAuthenticated ? <Holders /> : <Main />}/>
+                            <Route path={"/cryptoHub/news"} element={<News isAuth={isAuthenticated}/>}/>
+                            <Route path={"/cryptoHub/portfolio"} element={<Portfolio isAuth={isAuthenticated}/>}/>
                             <Route path={"/cryptoHub/:id"} element={<CoinDescription/>}/>
                             <Route path={"*"} element={<Navigate to="/cryptoHub"/>}/>
                             <Route path={"/cryptoHub/login"} element={<Login/>}/>

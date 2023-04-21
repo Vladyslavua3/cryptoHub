@@ -5,8 +5,8 @@ import {useDispatch} from "react-redux";
 import {trendingReducer} from "./trendingReducer";
 import {holderReducer} from "./holdersReducer";
 import {descriptionReducer} from "./descriptionReducer";
-import {authReducer} from "./auth";
 import {configureStore} from "@reduxjs/toolkit";
+import {authReducer} from "../store/auth/authSlice";
 
 
 const rootReducer = combineReducers({

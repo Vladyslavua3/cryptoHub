@@ -1,15 +1,4 @@
-/*.wrapper{*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: space-between;*/
-/*    width: 80vw;*/
-/*    height: 80px;*/
-/*    background-color:#656565;*/
-/*    border-radius: 25px;*/
-/*    margin-bottom: 25px;*/
-/*    align-items: center;*/
-/*    padding: 10px;*/
-/*}*/
+
 
 .coinRow {
     display: flex;
@@ -46,6 +35,9 @@ img {
 @media screen and (max-width: 720px) {
     .hideMobile {
         display: none;
+    }
+    img{
+     height: 20px;
     }
 }
 

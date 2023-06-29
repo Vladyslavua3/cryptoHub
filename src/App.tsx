@@ -30,19 +30,12 @@ export const App = () => {
     const router = useNavigate()
 
     const {isLoading,isAuthenticated,error,user} = useAuth0()
-    // const {isAuth,user} = useSelector<AppRootStateType,authStateType>(state => state.auth)
 
 
     if(error) return <div>Oops...</div>
 
 
 
-    // useEffect(()=>{
-    //     if(localStorage.getItem('auth')){
-    //         dispatch(AuthActionCreators.setUser({username:localStorage.getItem('username')}as IUser))
-    //         dispatch(AuthActionCreators.setIsAuth(true))
-    //     }
-    // },[])
 
     return (
         <Layout style={{height: '100%'}}>

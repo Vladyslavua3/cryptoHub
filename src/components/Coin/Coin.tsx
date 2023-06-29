@@ -27,17 +27,7 @@ export const Coin = (props:CoinsType) => {
                 <p className={s.hideMobile}>${props.total_volume.toLocaleString()}</p>
                 <p className='hide-mobile'>${props.market_cap.toLocaleString()}</p>
             </div>
-        {/*<ul className={s.wrapper}>*/}
-        {/*    <li>#{props.market_cap_rank}</li>*/}
-        {/*    <li><img src={props.image} alt={'image'}/></li>*/}
-        {/*    <li>{props.name}</li>*/}
-        {/*    <li className={s.hidden}>{props.symbol}</li>*/}
-        {/*    <li>{numbers(props.current_price)}</li>*/}
-        {/*    <li className={props.price_change_percentage_24h < 0 ? s.red : s.green}>{props.price_change_percentage_24h.toFixed(2)}%</li>*/}
-        {/*    <li className={s.hidden}>{numbers(props.low_24h)}</li>*/}
-        {/*    <li className={s.hidden}>{numbers(props.high_24h)}</li>*/}
-        {/*    <li className={s.hidden}>{numbers(props.market_cap)}</li>*/}
-        {/*</ul>*/}
+
         </NavLink>
     );
 };

@@ -21,7 +21,7 @@ export const Main = () => {
     return (
         <div className={s.main}>
             <h1>Top 10 Crypto</h1>
-            {!coins && <div>Sorry , this because i use free Api</div>}
+            {!coins && <div>Sorry , this is because i use free Api</div>}
             {coins.map((e) => <Coin key={e.id}
                                     id={e.id}
                                     symbol={e.symbol}
